@@ -1,13 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Donut Clicker</title>
-  </head>
-  <body>
-    <div class="container"></div>
-    <script src="./index.js"></script>
-  </body>
-</html>
+<HTML>
+<header>
+    <title>Vascoe Donut World</title>
+    <style>
+        body {
+            background-color: #DFA696;
+            background-image: url(https://static.wixstatic.com/media/84770f_b9252f3e5f93c72828fc613beee1af78.gif);
+            background-repeat: no-repeat;
+            background-position: center left;
+            background-attachment: fixed;
+        }
+        
+        h1 {
+            font-family: Arial, sans-serif;
+            color: #000000;
+            background-color: #DFA696;
+            font-size: 50px;
+            margin-right: 50%;
+        }
+        
+        p {
+            font-family: Georgia, serif;
+            font-size: 30px;
+            font-style: normal;
+            font-weight: normal;
+            color: black;
+            background-color: #DFA696;
+            position: relative;
+            width: 500px;
+            align-items: right;
+            margin-left: 50%;
+            margin-top: 01%;
+        }
+    </style>
+</header>
+
+<body>
+    <h1>Vascoe Donut World</h1>
+    <p>DonutCount: <span id="donutCount">0</span></p>
+    <img scr="images/donuts.png" height="300px" width="300px" onclick="addToDonutCount(1)">
+    <button onclick="buyAutoClicker()">autoClicker [<span id="autoClickerCost">15</span>] == <span id="autoClickers">0</span></button>
+    <script>
+        var donutCount = 0;
+        var autoClickerCost = 15;
+        var autoClickers = 0;
+
+        function buyAutoClicker() {
+            if (donutCount >= autoClickerCost) {
+                donutCount = donutCount - autoClickerCost;
+                autoClickers = autoClickers + 1;
+                autoClickerCost = Math.round(autoClickerCost * 1.15);
+
+                document.getElementById("donutCount").innerHTML = donutCount;
+                document.getElementById("autoClickerCost").innerHTML = autoClickerCost;
+                document.getElementById("autoClickers").innerHTML = autoClickers;
+            }
+        }
+
+        function addToDonutCount(amount) {
+            donutCount = donutCount + amount;
+            document.getElementById("donutCount").innerHTML = donutCount;
+        }
+        setInterval(function() {
+            donutCount = donutCount + autoClickers;
+            document.getElementById("donutCount").innerHTML = donutCount;
+        });
+    </script>
+    <p>
+        One AutoClicker is Equivalent to 16 Donuts. Click 16 times on the Map of the World; Then Click "autoclick button", to start making your own Donuts </p>
+    <p>When baking, DonutCount becomes a Timer in milliSeconds</p>
+</body>
+
+</HTML>
